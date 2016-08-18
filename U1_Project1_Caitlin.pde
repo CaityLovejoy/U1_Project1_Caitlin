@@ -47,7 +47,7 @@ void draw()
   }
   if (sceneNum == 8)
   {
-    Death1EE();
+    Death1(); 
   }
   if (sceneNum == 10)
   {
@@ -252,7 +252,7 @@ void noInfoCBC()
   }
 }
 
-void Death1EE()
+void Death1()
 {
   image(sceneImage, 0, 0);
   noStroke();
@@ -414,6 +414,8 @@ void Death2()
   rect(0, height - height/6, width, height/6);
   stroke(255);
   fill(255);
+  text(" You narrowly miss getting to saftey, the room seals and you are trapped within the tomb forever.", 40, height - height/6 + TEXT_OFFSET)
+  fill(255, 0, 0);
 }
 
 void keyReleased()
