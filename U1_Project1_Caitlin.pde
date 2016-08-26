@@ -4,6 +4,10 @@ int INVERTORY_SIZE = 6;
 float TEXT_OFFSET = 50;
 int sceneNum = 1;
 PImage sceneImage;
+PImage sceneImage1;
+PImage sceneImage2;
+PImage sceneImage3;
+PImage sceneImage4;
 
 void setup()
 {
@@ -11,6 +15,14 @@ void setup()
   inventory = new String[INVERTORY_SIZE];
   sceneImage = loadImage("hill.jpg");
   sceneImage.resize(width, height);
+  sceneImage1 = loadImage("welcome.jpg");
+  sceneImage1.resize(width,height);
+  sceneImage2 = loadImage("room.jpg");
+  sceneImage2.resize(width,height);
+  sceneImage3 = loadImage("black.jpg");
+  sceneImage3.resize(width,height);
+  sceneImage4 = loadImage("images.jpg");
+  sceneImage4.resize(width,height);
 }
 
 void draw()
@@ -43,11 +55,11 @@ void draw()
   }
   if (sceneNum == 4)
   {
-    NorthEntrance();
+    NorthEntrancePt1();
   }
   if (sceneNum == 8)
   {
-    Death1(); 
+    Death1();
   }
   if (sceneNum == 10)
   {
@@ -64,6 +76,26 @@ void draw()
   if (sceneNum == 12)
   {
     Death2();
+  }
+  if (sceneNum == 8)
+  {
+    Death1();
+  }
+  if (sceneNum == 15)
+  {
+    northernEntrancePt2();
+  }
+  if (sceneNum == 16)
+  {
+    northernWallPt1();
+  }
+  if (sceneNum == 17)
+  {
+    northernHall();
+  }
+  if (sceneNum == 18)
+  {
+    northernWallPt2();
   }
 }
 
@@ -102,7 +134,7 @@ void Outside()
 void EastEntrance()
 {
   // sceneImage = loadImage("");
-  image(sceneImage, 0, 0);
+  image(sceneImage2, 0, 0);
   noStroke();
   fill(0, 0, 0);
   rect(0, height - height/6, width, height/6);
@@ -157,7 +189,7 @@ void CobwebBurningCheck()
 
 void infoGatheredCBC()
 {
-  image(sceneImage, 0, 0);
+  image(sceneImage2, 0, 0);
   noStroke();
   fill(0, 0, 0);
   rect(0, height - height/6, width, height/6);
@@ -188,13 +220,13 @@ void infoGatheredCBC()
 
 void WestEntrance()
 {
-  image(sceneImage, 0, 0);
+  image(sceneImage2, 0, 0);
   noStroke();
   fill(0, 0, 0);
   rect(0, height - height/6, width, height/6);
   stroke(255);
   fill(255);
-  text("The entrance to the tomb is a long, harshly carved passageway. \n" 
+  text("West Entrance: The entrance to the tomb is a long, harshly carved passageway. \n" 
     + "The ceiling, floor, and walls are roughly hewn. A pair of doors at the end of the hallway arebuilt of heavy oak \n"
     + "and iron bars, with pull rings to open them. It looks like it would be treacherous to move at more than a snail's pace across the badly excavated floor.", 40, height - height/6 + TEXT_OFFSET); 
   fill(255, 0, 0);
@@ -219,13 +251,32 @@ void WestEntrance()
   }
 }
 
-void NorthEntrance()
+void NorthEntrancePt1()
 {
+  image(sceneImage1, 0, 0);
+  noStroke();
+  fill(0, 0, 0);
+  rect(0, height - height/6, width, height/6);
+  stroke(255);
+  fill(255);
+  text("North Entrance: This long corridor seems untouched by the passing of the ages.\n" 
+    + "Decadent frescoes are painted upon the plaster-covered walls, which is in some places chipped to reveal underlying masonry. \n"
+    + "A winding path of red tiles meanders down the corridor, leading to a great green devil face, and a magical portal. \n" 
+    + "A grotesque winged statue with four arms is perched on the green devil face's horns, staring blankly forward.     Press 1 to continue", 40, height - height/6 + TEXT_OFFSET);
+
+if (keyPressed && isAvailable)
+  {
+    if (key == '1')
+    {
+      sceneNum = 15;
+      isAvailable = false;
+    }
+  }
 }
 
 void noInfoCBC()
 {
-  image(sceneImage, 0, 0);
+  image(sceneImage2, 0, 0);
   noStroke();
   fill(0, 0, 0);
   rect(0, height - height/6, width, height/6);
@@ -254,7 +305,7 @@ void noInfoCBC()
 
 void Death1()
 {
-  image(sceneImage, 0, 0);
+  image(sceneImage3, 0, 0);
   noStroke();
   fill(0, 0, 0);
   rect(0, height - height/6, width, height/6);
@@ -294,7 +345,7 @@ void Death1()
 
 void Partition()
 {
-  image(sceneImage, 0, 0);
+  image(sceneImage2, 0, 0);
   noStroke();
   fill(0, 0, 0);
   rect(0, height - height/6, width, height/6);
@@ -332,7 +383,7 @@ void Partition()
 
 void roomTrap()
 {
-  image(sceneImage, 0, 0);
+  image(sceneImage2, 0, 0);
   noStroke();
   fill(0, 0, 0);
   rect(0, height - height/6, width, height/6);
@@ -340,7 +391,7 @@ void roomTrap()
   fill(255);
   text("The room rumbles loudly, shaking as though in the midst of a minor earthquake.", 40, height - height/6 + TEXT_OFFSET);
   fill(255, 0, 0);
-  text(" 1: Try and walk away     2: Try and run to the other side of the room", 40, height - height/6 + TEXT_OFFSET);
+  text("\n 1: Try and walk away     2: Try and run to the other side of the room", 40, height - height/6 + TEXT_OFFSET);
 
   if (keyPressed && isAvailable)
   {
@@ -386,7 +437,7 @@ void escape()
   text("You make it outside just a the tunnel seals itself \n"
     + "you sustained mild injuries, it is impossible to enter the tunnel again", 40, height - height/6 + TEXT_OFFSET);
   fill(255, 0, 0);
-  text(" 1: East entrance     2: North entrance", 40, height - height/6 + TEXT_OFFSET);
+  text("\n\n 1: East entrance     2: North entrance", 40, height - height/6 + TEXT_OFFSET);
 
   if (keyPressed && isAvailable)
   {
@@ -408,14 +459,121 @@ void escape()
 
 void Death2()
 {
-  image(sceneImage, 0, 0);
+  image(sceneImage3, 0, 0);
   noStroke();
   fill(0, 0, 0);
   rect(0, height - height/6, width, height/6);
   stroke(255);
   fill(255);
-  text(" You narrowly miss getting to saftey, the room seals and you are trapped within the tomb forever.", 40, height - height/6 + TEXT_OFFSET)
+  text("you don't make it to safety, you are sealed within the tomb forever and you die of starvation \n"
+  + "Game over", 40, height - height/6 + TEXT_OFFSET);
+}
+
+void northernEntrancePt2()
+{
+  image(sceneImage1, 0, 0);
+  noStroke();
+  fill(0, 0, 0);
+  rect(0, height - height/6, width, height/6);
+  stroke(255);
   fill(255, 0, 0);
+  text("1:Return to surface     2:Back to text     3:Inspect the walls     4:Walk forward", 40, height - height/6 + TEXT_OFFSET);
+  if (keyPressed && isAvailable)
+  {
+    if (key == '1')
+    {
+      sceneNum = 1;
+      isAvailable = false;
+    }
+  }
+  if (keyPressed && isAvailable)
+  {
+    if (key == '2')
+    {
+      sceneNum = 4;
+      isAvailable = false;
+    }
+  }
+  if (keyPressed && isAvailable)
+  {
+    if (key == '3')
+    {
+      sceneNum = 16;
+      isAvailable = false;
+    }
+  }
+  if (keyPressed && isAvailable)
+  {
+    if (key == '4')
+    {
+      sceneNum = 17;
+      isAvailable = false;
+    }
+  }
+}
+
+void northernWallPt1()
+{
+  image(sceneImage4, 0, 0);
+  noStroke();
+  fill(0, 0, 0);
+  rect(0, height - height/6, width, height/6);
+  stroke(255);
+  fill(255);
+  text("North Entrance Walls: The images depict fields with cattle grazing, and low woodlands with several wolves in the background, common race slaves toiling with various tasks, \n"
+  + "mixed in with zoomorphic humanoids. Chairs, windows, boxes, bales, doors, chests, birds, bats, spiders, and all manner of things appear on the walls. \n"
+  + "Some frescoes are more focused and show rooms of some building—a library filled with many books and scrolls, a chamber with a horrid creature in \n" 
+  + "a cage used to torture prisoners, and a magical workshop.     Press 1 to continue", 40, height - height/6 + TEXT_OFFSET);
+  if (keyPressed && isAvailable)
+  {
+    if (key == '1')
+    {
+      sceneNum = 18;
+      isAvailable = false;
+    }
+  }
+}
+
+void northernHall()
+{
+  image(sceneImage1, 0, 0);
+  noStroke();
+  fill(0, 0, 0);
+  rect(0, height - height/6, width, height/6);
+  stroke(255);
+  fill(255);
+  
+}
+
+void northernWallPt2()
+{
+  image(sceneImage4, 0, 0);
+  noStroke();
+  fill(0, 0, 0);
+  rect(0, height - height/6, width, height/6);
+  stroke(255);
+  fill(255);
+  text("North Entrance Walls: Two jackal-headed human figures in this latter painting are portrayed as if holding a bronze chest— except that the chest is real, and protrudes into the corridor. \n" 
+  + "The chest is hinged on the bottom so as to allow the lid to swing down when a stud is pressed.", 40, height - height/6 + TEXT_OFFSET);
+  fill(255, 0, 0);
+  text("\n\n 1:Return to surface     2:Explore the hall", 40, height - height/6 + TEXT_OFFSET);
+  if (keyPressed && isAvailable)
+  {
+    if (key == '1')
+    {
+      sceneNum = 1;
+      isAvailable = false;
+    }
+  }
+  if (keyPressed && isAvailable)
+  {
+    if (key == '2')
+    {
+      sceneNum = 19;
+      isAvailable = false;
+    }
+  }
+
 }
 
 void keyReleased()
